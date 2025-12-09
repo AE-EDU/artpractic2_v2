@@ -259,8 +259,77 @@
     cursor: url('../images/cursor-key.svg') 16 16, pointer;
 }
 
-.grid-image:hover {
-    animation: wobble 2s ease-in-out infinite;
+.cell-3 .cell-image-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 50%;
+    overflow: hidden;
+}
+
+.cell-3 .image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.cell-3 .grid-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.cell-3 .spiral-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.cell-3 .spiral {
+    position: absolute;
+    width: 11.79%;
+    height: 23.47%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    transform-origin: center;
+}
+
+.cell-3 .spiral img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.spiral img {
+    transform: scale(0.8);
+}
+
+.cell-3 .spiral-left {
+    left: 37.87%;
+    top: 63%;
+}
+
+.cell-3 .spiral-right {
+    left: 62.12%;
+    top: 57.33%;
+}
+
+@keyframes rotateClockwise {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes wobble {
@@ -292,12 +361,14 @@
 }
 
 @keyframes moveRightLeft {
-     0%, 100% {
+    0%, 100% {
         transform: translateX(0);
     }
+
     33% {
         transform: translateX(10px);
     }
+
     66% {
         transform: translateX(-10px);
     }
@@ -311,9 +382,11 @@
     animation: moveRightLeft 2s ease-in-out infinite;
 }
 
-.cell-3 .grid-image:hover {
-    animation: wobble 1.8s ease-in-out infinite;
+.cell-3:hover .spiral {
+    opacity: 1;
+    animation: rotateClockwise 0.1s linear infinite;
 }
+
 
 .cell-4 .grid-image:hover {
     animation: gentleWobble 2.2s ease-in-out infinite;
