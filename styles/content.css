@@ -788,6 +788,37 @@
     }
 }
 
+@media (max-width: 480px) {
+    .footer {
+        height: 400px;
+    }
+
+    .footer-logo-bivium {
+        top: 40px;
+        width: 280px;
+        height: 80px;
+    }
+
+    .footer-logo-hse {
+        width: 120px;
+        height: 52px;
+        left: 8px;
+    }
+
+    .footer-info {
+        padding: 0 8px 8px 0;
+    }
+
+    .footer-name {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .footer-group {
+        font-size: 14px;
+    }
+}
+
 @media (max-width: 320px) {
     .header {
         max-height: 200px;
@@ -860,24 +891,5 @@
         font-size: 14px;
         line-height: 50px;
         margin-right: 30px;
-    }
-
-    .footer-logo-hse {
-        width: 120px;
-        height: 52px;
-        left: 8px;
-    }
-
-    .footer-info {
-        padding: 0 8px 8px 0;
-    }
-
-    .footer-name {
-        font-size: 14px;
-        margin-bottom: 5px;
-    }
-
-    .footer-group {
-        font-size: 14px;
     }
 }
