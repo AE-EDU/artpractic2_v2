@@ -1,7 +1,6 @@
 .header {
     width: 100%;
-    max-height: 544px;
-    height: 544px;
+    min-height: 408px;
     background: var(--bg-color);
     overflow: hidden;
     display: flex;
@@ -74,18 +73,18 @@
     line-height: 100px;
     word-wrap: break-word;
     flex-shrink: 0;
+    text-transform: uppercase;
 }
 
 .word1 {
+    color: #bb77cc4d;
     font-size: 80px;
     font-weight: 900;
     line-height: 100px;
     word-wrap: break-word;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: var(--text-color);
-    color: transparent;
-    padding: 5px 10px;
     flex-shrink: 0;
+    text-transform: uppercase;
+
 }
 
 /* Анимации движения */
@@ -142,7 +141,7 @@
 
     0%,
     100% {
-        opacity: 0;
+        opacity: 0.5;
         transform: rotate(270deg) scale(0.8);
     }
 
@@ -237,89 +236,83 @@
     background: #F0BD03;
 }
 
+.cell-title {
+    color: #bb77cc4d;
+    font-size: 80px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 3;
+    opacity: 0.8;
+    transition: all 0.4s ease;
+    pointer-events: none;
+    text-align: center;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+}
+
+.cell-title .letter {
+    display: inline-block;
+    color: #BB77CC;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform-origin: center;
+}
+
+.cell-title .letter[data-rotate] {
+    position: relative;
+    z-index: 2;
+}
+
+
+.grid-cell:hover .cell-title {
+    opacity: 1;
+    color: var(--bg-color);
+    transform: translateY(-3px) scale(1.05);
+}
+
+.grid-cell:hover .cell-title .letter {
+    color: var(--bg-color);
+}
+
+.cell-1:hover .cell-title .letter[data-rotate],
+.cell-3:hover .cell-title .letter[data-rotate],
+.cell-5:hover .cell-title .letter[data-rotate] {
+    transform: rotate(90deg);
+    color: var(--bg-color);
+}
+
+.cell-2:hover .cell-title .letter[data-rotate],
+.cell-4:hover .cell-title .letter[data-rotate],
+.cell-6:hover .cell-title .letter[data-rotate] {
+    transform: rotate(90deg);
+    color: var(--bg-color);
+}
+
 .cell-image-container {
     position: relative;
     width: 100%;
-    height: calc(100% - 175px);
+    height: calc(100% - 200px);
+    max-height: 700px;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 2;
-    padding: 20px;
+    padding: 30px;
     box-sizing: border-box;
 }
 
 .grid-image {
     width: 100%;
     height: calc(100vw/2);
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     transition: transform 0.5s ease-in-out;
     cursor: url('../images/cursor-key.svg') 16 16, pointer;
-}
-
-.cell-3 .cell-image-container {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 50%;
-    overflow: hidden;
-}
-
-.cell-3 .image-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.cell-3 .grid-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
-
-.cell-3 .spiral-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 2;
-}
-
-.cell-3 .spiral {
-    position: absolute;
-    width: 11.79%;
-    height: 23.47%;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    transform-origin: center;
-}
-
-.cell-3 .spiral img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.spiral img {
-    transform: scale(0.8);
-}
-
-.cell-3 .spiral-left {
-    left: 37.87%;
-    top: 63%;
-}
-
-.cell-3 .spiral-right {
-    left: 62.12%;
-    top: 57.33%;
 }
 
 @keyframes rotateClockwise {
@@ -374,6 +367,24 @@
     }
 }
 
+@keyframes moveRightLeftRotate {
+    0% {
+        transform: rotate(3deg) translateX(0);
+    }
+
+    33% {
+        transform: rotate(3deg) translateX(10px);
+    }
+
+    66% {
+        transform: rotate(3deg) translateX(-10px);
+    }
+
+    100% {
+        transform: rotate(3deg) translateX(0);
+    }
+}
+
 .cell-1 .grid-image:hover {
     animation: wobble 2.5s ease-in-out infinite;
 }
@@ -382,18 +393,16 @@
     animation: moveRightLeft 2s ease-in-out infinite;
 }
 
-.cell-3:hover .spiral {
-    opacity: 1;
-    animation: rotateClockwise 0.1s linear infinite;
+.cell-3 .grid-image:hover {
+    animation: moveRightLeftRotate 1.9s ease-in infinite;
 }
-
 
 .cell-4 .grid-image:hover {
     animation: gentleWobble 2.2s ease-in-out infinite;
 }
 
 .cell-5 .grid-image:hover {
-    animation: wobble 2.3s ease-in-out infinite;
+    animation: wobble 2.3s ease-out infinite;
 }
 
 .cell-6 .grid-image:hover {
@@ -402,33 +411,18 @@
 
 .footer {
     width: 100%;
-    height: 702px;
-    position: relative;
+    min-height: 702px;
+    display: flex;
+    flex-direction: column;
     background: #EEC1F9;
     overflow: hidden;
-}
-
-.footer-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #EEC1F9;
-    z-index: 1;
+    padding-top: 90px;
 }
 
 .footer-logo-bivium {
-    position: absolute;
-    top: 95px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 635px;
-    height: 169px;
+    width: 80vw;
     z-index: 3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: auto;
 }
 
 .logo-bivium {
@@ -438,12 +432,9 @@
 }
 
 .footer-running-line {
-    position: absolute;
-    top: 354px;
-    left: 0;
     width: 100%;
-    height: 100px;
-    background: #FFF269;
+    min-height: 100px;
+    background: var(--bg-color);
     z-index: 2;
     overflow: hidden;
 }
@@ -465,7 +456,7 @@
 }
 
 .running-line-text span {
-    color: #BB77CC;
+    color: var(--text-color);
     font-size: 30px;
     font-family: 'Nunito', sans-serif;
     font-weight: 500;
@@ -485,28 +476,24 @@
 }
 
 .footer-logo-hse {
-    position: absolute;
-    left: 24px;
-    bottom: 0;
-    width: 376px;
-    height: 163px;
+    margin-top: 120px;
+    width: 100%;
+    min-height: 163px;
     z-index: 3;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    align-items: flex-start;
+    justify-content: space-between;
 }
 
 .logo-hse {
-    width: 100%;
-    height: 100%;
+    width: max-content;
+    height: 163px;
     object-fit: contain;
+    padding: 0 24px 24px 24px;
 }
 
 .footer-info {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    padding: 0 24px 24px 0;
+    padding-right: 24px;
     z-index: 3;
     display: flex;
     flex-direction: column;
@@ -536,7 +523,7 @@
 
 @media (max-width: 1280px) {
     .header {
-        height: 400px;
+        min-height: 300px;
     }
 
     .container {
@@ -586,8 +573,13 @@
         top: 100px;
     }
 
+    .cell-title .letter {
+        font-size: 70px;
+        gap: 0.5px;
+    }
+
     .cell-image-container {
-        height: calc(100% - 100px);
+        height: calc(100% - 150px);
     }
 
     .grid-image {
@@ -595,18 +587,7 @@
     }
 
     .footer {
-        height: 600px;
-    }
-
-    .footer-logo-bivium {
-        top: 70px;
-        width: 500px;
-        height: 135px;
-    }
-
-    .footer-running-line {
-        top: 300px;
-        height: 85px;
+        min-height: 600px;
     }
 
     .running-line-text span {
@@ -616,13 +597,16 @@
     }
 
     .footer-logo-hse {
-        width: 300px;
-        height: 130px;
-        left: 20px;
+        padding: 0;
+    }
+
+
+    .logo-hse {
+        padding: 0 20px 0 20px;
     }
 
     .footer-info {
-        padding: 0 20px 20px 0;
+        padding-right: 20px;
     }
 
     .footer-name,
@@ -633,8 +617,7 @@
 
 @media (max-width: 768px) {
     .header {
-        max-height: 300px;
-        height: 300px;
+        min-height: 225px;
     }
 
     .container {
@@ -743,27 +726,31 @@
         top: 71px;
     }
 
+    .cell-title .letter {
+        font-size: 50px;
+    }
+
     .cell-image-container {
-        height: calc(100% - 50px);
+        height: calc(100% - 100px);
     }
 
     .grid-image {
         height: 100vw;
+        max-width: 70vw;
     }
 
     .footer {
-        height: 500px;
+        min-height: 400px;
+        padding-top: 50px;
     }
 
     .footer-logo-bivium {
-        top: 50px;
-        width: 350px;
-        height: 95px;
+        height: 120px;
+        margin-bottom: 20px;
     }
 
     .footer-running-line {
-        top: 200px;
-        height: 70px;
+        min-height: 60px;
     }
 
     .running-line-text span {
@@ -773,13 +760,13 @@
     }
 
     .footer-logo-hse {
-        width: 200px;
-        height: 86px;
-        left: 15px;
+        margin-top: 90px;
+        min-height: 120px;
     }
 
-    .footer-info {
-        padding: 0 15px 15px 0;
+    .logo-hse {
+        width: max-content;
+        height: 100px;
     }
 
     .footer-name,
@@ -789,40 +776,58 @@
 }
 
 @media (max-width: 480px) {
+
+    .cell-image-container {
+        height: calc(100% - 62px);
+        padding: 20px;
+    }
+
+    .grid-cell {
+        margin-top: 20px;
+    }
+
+    .grid-image {
+        height: 100vw;
+        max-width: 80vw;
+    }
+
     .footer {
-        height: 400px;
+        min-height: 340px;
+        height: 340px;
+        padding-top: 30px;
     }
 
     .footer-logo-bivium {
-        top: 40px;
-        width: 280px;
-        height: 80px;
+        height: 100px;
     }
 
     .footer-logo-hse {
-        width: 120px;
-        height: 52px;
-        left: 8px;
+        height: 20px;
+        margin-top: 60px;
+    }
+
+    .logo-hse {
+        height: 60px;
+        padding: 0 14px 0 14px;
     }
 
     .footer-info {
-        padding: 0 8px 8px 0;
+        padding: 0 14px 14px 0;
     }
 
     .footer-name {
-        font-size: 14px;
+        font-size: 16px;
         margin-bottom: 5px;
     }
 
     .footer-group {
-        font-size: 14px;
+        font-size: 16px;
     }
 }
 
 @media (max-width: 320px) {
     .header {
-        max-height: 200px;
-        height: 200px;
+        min-height: 150px;
     }
 
     .container {
@@ -868,23 +873,40 @@
         top: 44px;
     }
 
+    .cell-title .letter {
+        font-size: 35px;
+    }
+
     .cell-image-container {
-        height: calc(100% - 62px);
+        height: calc(100% - 72px);
+        padding: 14px;
+    }
+
+    .grid-cell {
+        margin-top: 0;
+    }
+
+    .grid-image {
+        height: 100vw;
+        max-width: 90vw;
     }
 
     .footer {
-        height: 350px;
+        min-height: auto;
+        height: 270px;
     }
 
     .footer-logo-bivium {
-        top: 30px;
         width: 220px;
         height: 60px;
     }
 
     .footer-running-line {
-        top: 140px;
         height: 50px;
+    }
+
+    .footer-logo-hse {
+        margin-top: 30px;
     }
 
     .running-line-text span {

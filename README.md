@@ -1,7 +1,7 @@
 #
 
 ## Проект
-Данный проект размещён на GitHub Pages: [https://ae-edu.github.io/artpractic2_v2/](https://ae-edu.github.io/artpractic2/)
+Данный проект размещён на GitHub Pages: [https://ae-edu.github.io/artpractic2_v2/](https://ae-edu.github.io/artpractic2_v2/)
 
 название.
 
@@ -22,7 +22,7 @@
 
 ```bash
 # Клонирование репозитория
-git clone https://github.com/username/old-standard-tt.git
+git clone ...
 
 # Открытие в браузере
 open index.html
