@@ -124,18 +124,6 @@
     }
 }
 
-@keyframes moveLeftFast {
-
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-
-    50% {
-        transform: translateX(-150px);
-    }
-}
-
 /* Анимация для буквы V */
 @keyframes fadeV {
 
@@ -162,10 +150,6 @@
 
 .container-3 .content {
     animation: moveRightSlow 5s ease-in-out infinite;
-}
-
-.container-4 .content {
-    animation: moveLeftFast 2.5s ease-in-out infinite;
 }
 
 /* Анимация для всех букв V */
@@ -196,9 +180,10 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    overflow: hidden;
+    overflow: visible;
     min-height: 565px;
     background-color: transparent;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M24 12h-2V8c0-3.3-2.7-6-6-6s-6 2.7-6 6v4H8c-2.2 0-4 1.8-4 4v12c0 2.2 1.8 4 4 4h16c2.2 0 4-1.8 4-4V16c0-2.2-1.8-4-4-4zm-12-4c0-2.2 1.8-4 4-4s4 1.8 4 4v4H12V8z" fill="%23BB77CC"/><circle cx="16" cy="20" r="3" fill="%23FFF269"/></svg>') 16 16, pointer;
 }
 
 .cell-content {
@@ -215,7 +200,7 @@
     left: 0;
     width: 100%;
     height: 175px;
-    z-index: 1;
+    z-index: 2;
 }
 
 .color-top {
@@ -267,6 +252,37 @@
     z-index: 2;
 }
 
+.grid-cell::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-color: #FF00FF;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.grid-cell:hover::before {
+    opacity: 0.2;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.cell-1:hover::before,
+.cell-3:hover::before,
+.cell-5:hover::before {
+    width: 200%;
+    transform: translateX(0);
+}
+
+.cell-2:hover::before,
+.cell-4:hover::before,
+.cell-6:hover::before {
+    width: 200%;
+    transform: translateX(-50%);
+}
 
 .grid-cell:hover .cell-title {
     opacity: 1;
@@ -312,7 +328,11 @@
     height: 100%;
     object-fit: contain;
     transition: transform 0.5s ease-in-out;
-    cursor: url('../images/cursor-key.svg') 16 16, pointer;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M24 12h-2V8c0-3.3-2.7-6-6-6s-6 2.7-6 6v4H8c-2.2 0-4 1.8-4 4v12c0 2.2 1.8 4 4 4h16c2.2 0 4-1.8 4-4V16c0-2.2-1.8-4-4-4zm-12-4c0-2.2 1.8-4 4-4s4 1.8 4 4v4H12V8z" fill="%23BB77CC"/><circle cx="16" cy="20" r="3" fill="%23FFF269"/></svg>') 16 16, pointer;
+}
+
+.grid-image:active {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M24 12h-2V8c0-3.3-2.7-6-6-6s-6 2.7-6 6v4H8c-2.2 0-4 1.8-4 4v12c0 2.2 1.8 4 4 4h16c2.2 0 4-1.8 4-4V16c0-2.2-1.8-4-4-4z" fill="%23FFE672"/><path d="M16 22v-4" stroke="%23000" stroke-width="2"/><circle cx="16" cy="20" r="3" fill="%23FF00FF"/></svg>') 16 16, pointer;
 }
 
 @keyframes rotateClockwise {
@@ -385,27 +405,27 @@
     }
 }
 
-.cell-1 .grid-image:hover {
+.cell-1:hover .grid-image {
     animation: wobble 2.5s ease-in-out infinite;
 }
 
-.cell-2 .grid-image:hover {
+.cell-2:hover .grid-image {
     animation: moveRightLeft 2s ease-in-out infinite;
 }
 
-.cell-3 .grid-image:hover {
+.cell-3:hover .grid-image {
     animation: moveRightLeftRotate 1.9s ease-in infinite;
 }
 
-.cell-4 .grid-image:hover {
+.cell-4:hover .grid-image {
     animation: gentleWobble 2.2s ease-in-out infinite;
 }
 
-.cell-5 .grid-image:hover {
+.cell-5:hover .grid-image {
     animation: wobble 2.3s ease-out infinite;
 }
 
-.cell-6 .grid-image:hover {
+.cell-6:hover .grid-image {
     animation: gentleWobble 1.9s ease-in-out infinite;
 }
 
@@ -419,16 +439,51 @@
     padding-top: 90px;
 }
 
+@keyframes gradientMove {
+    0% {
+        transform: translateX(-66.666%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
 .footer-logo-bivium {
+    position: relative;
     width: 80vw;
     z-index: 3;
     margin: auto;
+    background: #EEC1F9;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+.footer-logo-bivium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300%;
+    height: 90%;
+    background: linear-gradient(90deg,
+            #FF00FF 0%,
+            #BB77CC 20%,
+            #FFE672 40%,
+            #FFF269 60%,
+            #FF00FF 80%,
+            #BB77CC 100%);
+    background-size: 100% 100%;
+    z-index: 1;
+    animation: gradientMove 8s ease-in-out infinite alternate;
 }
 
 .logo-bivium {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    position: relative;
+    z-index: 2;
 }
 
 .footer-running-line {
@@ -451,7 +506,7 @@
     display: flex;
     align-items: center;
     white-space: nowrap;
-    animation: runningLine 30s linear infinite;
+    animation: runningLine 40s linear infinite;
     padding-left: 100%;
 }
 
@@ -518,6 +573,42 @@
     font-weight: 500;
     text-transform: uppercase;
     line-height: 1.2;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Анимация сияния */
+@keyframes glowEffect {
+    0%, 100% {
+        filter: drop-shadow(0 0 10px rgba(187, 119, 204, 0.5));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 20px rgba(255, 255, 105, 0.8));
+    }
+}
+
+/* Анимация мягкого пульса */
+@keyframes softPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
 }
 
 
@@ -592,7 +683,7 @@
 
     .running-line-text span {
         font-size: 26px;
-        line-height: 85px;
+        line-height: 100px;
         margin-right: 80px;
     }
 
@@ -691,18 +782,6 @@
         }
     }
 
-    @keyframes moveLeftFast {
-
-        0%,
-        100% {
-            transform: translateX(0);
-        }
-
-        50% {
-            transform: translateX(-75px);
-        }
-    }
-
     .grid-container {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(6, 0.5fr);
@@ -737,6 +816,15 @@
     .grid-image {
         height: 100vw;
         max-width: 70vw;
+    }
+
+    .grid-cell::before {
+        transition: opacity 1s ease-in-out;
+    }
+
+    .grid-cell:hover::before {
+        width: 100%;
+        transform: translateX(0);
     }
 
     .footer {
