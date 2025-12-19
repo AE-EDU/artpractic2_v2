@@ -180,7 +180,7 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    overflow: visible;
+    overflow: hidden;
     min-height: 565px;
     background-color: transparent;
     cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M24 12h-2V8c0-3.3-2.7-6-6-6s-6 2.7-6 6v4H8c-2.2 0-4 1.8-4 4v12c0 2.2 1.8 4 4 4h16c2.2 0 4-1.8 4-4V16c0-2.2-1.8-4-4-4zm-12-4c0-2.2 1.8-4 4-4s4 1.8 4 4v4H12V8z" fill="%23BB77CC"/><circle cx="16" cy="20" r="3" fill="%23FFF269"/></svg>') 16 16, pointer;
@@ -250,38 +250,6 @@
 .cell-title .letter[data-rotate] {
     position: relative;
     z-index: 2;
-}
-
-.grid-cell::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 100%;
-    background-color: #FF00FF;
-    opacity: 0;
-    z-index: 1;
-    pointer-events: none;
-}
-
-.grid-cell:hover::before {
-    opacity: 0.2;
-    transition: opacity 0.8s ease-in-out;
-}
-
-.cell-1:hover::before,
-.cell-3:hover::before,
-.cell-5:hover::before {
-    width: 200%;
-    transform: translateX(0);
-}
-
-.cell-2:hover::before,
-.cell-4:hover::before,
-.cell-6:hover::before {
-    width: 200%;
-    transform: translateX(-50%);
 }
 
 .grid-cell:hover .cell-title {
@@ -474,7 +442,7 @@
             #FF00FF 80%,
             #BB77CC 100%);
     background-size: 100% 100%;
-    z-index: 1;
+    z-index: 0;
     animation: gradientMove 8s ease-in-out infinite alternate;
 }
 
@@ -833,7 +801,7 @@
     }
 
     .footer-logo-bivium {
-        height: 120px;
+        width: 90vw;
         margin-bottom: 20px;
     }
 
@@ -880,18 +848,20 @@
     }
 
     .footer {
-        min-height: 340px;
-        height: 340px;
+        min-height: auto;
+        height: auto;
         padding-top: 30px;
     }
 
     .footer-logo-bivium {
-        height: 100px;
+        width: 90vw;
     }
 
     .footer-logo-hse {
-        height: 20px;
+        min-height: auto;
+        height: auto;
         margin-top: 60px;
+        padding-bottom: 14px;
     }
 
     .logo-hse {
@@ -900,7 +870,7 @@
     }
 
     .footer-info {
-        padding: 0 14px 14px 0;
+        padding: 0 14px 0 0;
     }
 
     .footer-name {
@@ -979,14 +949,8 @@
         max-width: 90vw;
     }
 
-    .footer {
-        min-height: auto;
-        height: 270px;
-    }
-
     .footer-logo-bivium {
-        width: 220px;
-        height: 60px;
+    
     }
 
     .footer-running-line {
