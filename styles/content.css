@@ -423,7 +423,6 @@
     z-index: 3;
     margin: auto;
     background: #EEC1F9;
-    border-radius: 0;
     overflow: hidden;
 }
 
@@ -947,10 +946,6 @@
     .grid-image {
         height: 100vw;
         max-width: 90vw;
-    }
-
-    .footer-logo-bivium {
-    
     }
 
     .footer-running-line {
