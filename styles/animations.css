@@ -1,0 +1,166 @@
+/* Анимации движения для хедера */
+@keyframes moveRight {
+    0%, 100% {
+        transform: translateX(-150px);
+    }
+
+    50% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes moveLeft {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-100px);
+    }
+}
+
+@keyframes moveRightSlow {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(50px);
+    }
+}
+
+/* Анимация для буквы V */
+@keyframes fadeV {
+    0%, 100% {
+        opacity: 0.5;
+        transform: rotate(270deg) scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: rotate(270deg) scale(1);
+    }
+}
+
+/* Анимации для изображений */
+@keyframes wobble {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(3deg);
+    }
+
+    75% {
+        transform: rotate(-3deg);
+    }
+}
+
+@keyframes gentleWobble {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+
+    33% {
+        transform: rotate(4deg);
+    }
+
+    66% {
+        transform: rotate(-4deg);
+    }
+}
+
+@keyframes moveRightLeft {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    33% {
+        transform: translateX(10px);
+    }
+
+    66% {
+        transform: translateX(-10px);
+    }
+}
+
+@keyframes moveRightLeftRotate {
+    0% {
+        transform: rotate(3deg) translateX(0);
+    }
+
+    33% {
+        transform: rotate(3deg) translateX(15px);
+    }
+
+    66% {
+        transform: rotate(3deg) translateX(0);
+    }
+
+    100% {
+        transform: rotate(3deg) translateX(0);
+    }
+}
+
+/* Анимация бегущей строки */
+@keyframes runningLine {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Анимация градиента в футере */
+@keyframes gradientMove {
+    0% {
+        transform: translateX(-66.666%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Уменьшаем амплитуду анимации на мобильных */
+    @keyframes moveRight {
+
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        50% {
+            transform: translateX(50px);
+        }
+    }
+
+    @keyframes moveLeft {
+
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        50% {
+            transform: translateX(-50px);
+        }
+    }
+
+    @keyframes moveRightSlow {
+
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        50% {
+            transform: translateX(25px);
+        }
+    }
+}

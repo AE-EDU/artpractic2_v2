@@ -1,15 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap");
-
-
+@import url('animations.css');
 @import url('reset.css');
 @import url('content.css');
-
-
 
 :root {
   --bg-color: #FFF269;
   --text-color: #BB77CC;
-  --grid-line-color: #B98139;
   --grid-bg-color: #DEAEED;
-  --grid-gap: 50px;
 }
